@@ -1,0 +1,2 @@
+local: ""
+jupyterhub: ~/shared/datasets/geo/sync
