@@ -1,2 +1,2 @@
-local: ""
+local: R:\DataLab\sync_with_datalab
 jupyterhub: ~/shared/datasets/geo/sync
