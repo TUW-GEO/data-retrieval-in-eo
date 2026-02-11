@@ -4,14 +4,12 @@ version = "0.0.0"
 description = "Notebooks for the Course 'Data Retrieval in Earth Observation'"
 readme = "README.md"
 authors = [ { name = "Nikolas Pikall", email = "nikolas.pikall@tuwien.ac.at" } ]
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 classifiers = [
   "Intended Audience :: Science/Research",
   "Natural Language :: English",
   "Operating System :: POSIX",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
@@ -32,7 +30,7 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = []
+dev = [ "ruff>=0.15", "ty>=0.0.16" ]
 book = [
   "jupyter>=1.1.1",
   "jupyter-server>=2.17",
@@ -60,6 +58,9 @@ lint.ignore = [
   "COM812", # missing-trailing-comma (may conflict with ruff formatter)
   "D203",   # incorrect-blank-line-before-class (conflicts with D211)
   "D213",   # multi-line-summary-second-line (conflicts with D212)
+  "ERA001", # commented-out-code
+  "PD011",  # pandas-use-of-dot-values
+  "T201",   # print used
 ]
 lint.fixable = [ "ALL" ]
 lint.unfixable = []
