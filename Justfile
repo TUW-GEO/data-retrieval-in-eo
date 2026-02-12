@@ -2,7 +2,6 @@
 _default:
     @just --list --unsorted
 
-alias b := bump
 alias c := clean
 alias h := hooks
 alias q := check
@@ -73,39 +72,15 @@ clean-test:
 venv:
     uv sync --all-groups --all-extras
 
-[confirm("Do you really want to bump? (y/n)")]
-[private]
-prompt-confirm:
+# create an ipython kernel
+[group("kernel")]
+kernel:
+    uv run ipython kernel install --user --env VIRTUAL_ENV $(pwd)/.venv --name=data-retrieval
 
-# bump the version, commit and add a tag <major|minor|patch|...>
-[group("chore")]
-bump INCREMENT="patch": && tag
-    @uv version --bump {{ INCREMENT }} --dry-run
-    @just prompt-confirm
-    uv version --bump {{ INCREMENT }}
-
-# tag the latest version
-[group("chore")]
-tag VERSION=`uv version --short`:
-    git add pyproject.toml
-    git add uv.lock
-    git commit -m "Bumped version to {{ VERSION }}"
-    git tag -a "v{{ VERSION }}"
-    @echo "{{ GREEN }}{{ BOLD }}Version has been bumped to {{ VERSION }}.{{ NORMAL }}"
-
-# preview the documentation locally (serve the myst website)
-[group("dev")]
-docs:
-    uv sync --group book
-    uv run myst
-
-# initialize a git repo and add all files
-[group("chore")]
-init: venv
-    git init --initial-branch=main
-    git add .
-    git commit -m "initial commit"
-    @echo "{{ GREEN }}{{ BOLD }}Git has been initialized{{ NORMAL }}"
+# create an ipython kernel
+[group("kernel")]
+remove-kernel:
+    uv run jupyter kernelspec uninstall data-retrieval
 
 # update dependencies
 [group("chore")]
