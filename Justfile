@@ -5,9 +5,10 @@ _default:
 alias c := clean
 alias h := hooks
 alias q := check
-alias t := test
-
-PROJ := `uv version --short`
+alias k := kernel
+alias rk := remove-kernel
+alias du := docker-up
+alias dd := docker-down
 
 # lint python code using ruff
 [private]
@@ -27,11 +28,6 @@ check-types:
 # lint, format with ruff and type-check with ty
 [group("dev")]
 check: check-lint check-format check-types
-
-# run tests with coverage
-[group("dev")]
-test:
-    uv run pytest tests/
 
 # setup the pre-commit hooks
 [group("dev")]
@@ -77,7 +73,7 @@ venv:
 kernel:
     uv run ipython kernel install --user --env VIRTUAL_ENV $(pwd)/.venv --name=data-retrieval
 
-# create an ipython kernel
+# remove the ipython kernel
 [group("kernel")]
 remove-kernel:
     uv run jupyter kernelspec uninstall data-retrieval
@@ -87,11 +83,6 @@ remove-kernel:
 update:
     uvx prek autoupdate
     uv lock --upgrade
-
-# write the changelog
-[group("chore")]
-changelog VERSION="auto":
-    uvx git-changelog -Tio CHANGELOG.md -B="{{ VERSION }}" -c angular
 
 # run a docker container
 [group("docker")]
