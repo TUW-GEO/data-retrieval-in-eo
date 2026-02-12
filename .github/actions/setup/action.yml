@@ -9,5 +9,3 @@ runs:
         #Install a specific version of uv.
         version: "0.9.17"
         enable-cache: true
-    - name: Install just
-      run: uv tool install rust-just
