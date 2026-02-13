@@ -24,8 +24,6 @@ jobs:
             type=semver,pattern={{raw}}
       - name: Checkout repository
         uses: actions/checkout@v5
-        with:
-          ref: tuwel
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
