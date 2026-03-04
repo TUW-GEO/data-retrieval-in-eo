@@ -18,7 +18,9 @@ classifiers = [
 ]
 dependencies = [
   "ascat>=2.6.5",
+  "ipywidgets>=8.1.8",
   "ismn>=1.5.2",
+  "jupyter>=1.1.1",
   "matplotlib>=3.10.8",
   "numba==0.61",
   "numpy==2.1.3",
