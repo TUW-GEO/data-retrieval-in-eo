@@ -57,5 +57,9 @@ lint.ignore = [
   "PD011",  # pandas-use-of-dot-values
   "T201",   # print used
 ]
+lint.per-file-ignores."notebooks/Ex3.ipynb" = [ "F401" ]
 lint.fixable = [ "ALL" ]
 lint.unfixable = []
+
+[tool.ty]
+src.exclude = [ "notebooks/Ex1.ipynb" ]
