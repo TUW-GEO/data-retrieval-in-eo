@@ -23,7 +23,7 @@ def copy_payload(payload: list[Path], target: Path) -> None:
         copy2(src=src_file, dst=target_file)
 
 
-def main() -> None:  # noqa: D103
+def main() -> None:
     home = Path.home()
     source_dir = home / f"shared/{COURSE_NAME}/remote"
     group_dir = home / f"groups/{COURSE_NAME}"

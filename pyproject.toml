@@ -58,6 +58,7 @@ lint.ignore = [
   "T201",   # print used
 ]
 lint.per-file-ignores."notebooks/Ex3.ipynb" = [ "F401" ]
+lint.per-file-ignores."scripts/*" = [ "D100", "D103", "INP001" ]
 lint.fixable = [ "ALL" ]
 lint.unfixable = []
 
