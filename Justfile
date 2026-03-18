@@ -10,24 +10,27 @@ alias rk := remove-kernel
 alias du := docker-up
 alias dd := docker-down
 
-# lint python code using ruff
-[private]
-check-lint:
-    uv run ruff check . --fix
+# run the linter [arg:<full|concise|...>]
+[group("style")]
+lint arg="concise":
+    uv run ruff check . --fix --output-format={{ arg }}
 
-# format python code using ruff
-[private]
-check-format:
+# run the formatter
+[group("style")]
+format:
     uv run ruff format .
 
-# run the type checker ty
-[private]
-check-types:
-    uv run ty check
+# run the type checker [arg:<full|concise|...>]
+[group("style")]
+types arg="concise":
+    uv run ty check --output-format={{ arg }}
 
-# lint, format with ruff and type-check with ty
-[group("dev")]
-check: check-lint check-format check-types
+# lint, format and type-check [arg:<full|concise|...>]
+[group("style")]
+check arg="concise":
+    -@just lint {{ arg }}
+    -@just format
+    -@just types {{ arg }}
 
 # setup the pre-commit hooks
 [group("dev")]
